@@ -49,7 +49,7 @@
 
         <div class="form-container">
           <form id="registerForm" onsubmit="submitForm(event)">
-            <div id="firstName">
+            <div class="formFieldClass" id="firstName">
               <input
                 class="input-class"
                 autocomplete="off"
@@ -57,8 +57,16 @@
                 placeholder="First Name"
                 type="text"
               />
+              <img
+                class="hiddenClass"
+                alt="error"
+                src="./images/icon-error.svg"
+              />
+              <div id="emptyfirstNameInput" class="hiddenClass">
+                First Name cannot be empty
+              </div>
             </div>
-            <div id="lastName">
+            <div class="formFieldClass" id="lastName">
               <input
                 class="input-class"
                 autocomplete="off"
@@ -66,8 +74,16 @@
                 placeholder="Last Name"
                 type="text"
               />
+              <img
+                class="hiddenClass"
+                alt="error"
+                src="./images/icon-error.svg"
+              />
+              <div id="emptylastNameInput" class="hiddenClass">
+                Last Name cannot be empty
+              </div>
             </div>
-            <div id="emailAddress">
+            <div class="formFieldClass" id="emailAddress">
               <input
                 class="input-class"
                 autocomplete="off"
@@ -75,8 +91,19 @@
                 placeholder="Email Address"
                 type="text"
               />
+              <img
+                class="hiddenClass"
+                alt="error"
+                src="./images/icon-error.svg"
+              />
+              <div id="emptyemailAddressInput" class="hiddenClass">
+                Email Address cannot be empty
+              </div>
+              <div id="invalidEmail" class="hiddenClass">
+                Looks like this is not an email
+              </div>
             </div>
-            <div id="password">
+            <div class="formFieldClass" id="password">
               <input
                 class="input-class"
                 autocomplete="off"
@@ -84,6 +111,14 @@
                 placeholder="Password"
                 type="password"
               />
+              <img
+                class="hiddenClass"
+                alt="error"
+                src="./images/icon-error.svg"
+              />
+              <div id="emptypasswordInput" class="hiddenClass">
+                Password cannot be empty
+              </div>
             </div>
             <button class="submitButton" id="submitButton">
               <p class="submitButtonText">CLAIM YOUR FREE TRIAL</p>
