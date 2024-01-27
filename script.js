@@ -1,56 +1,55 @@
 function submitForm(event) {
+  let counter = 0;
   event.preventDefault();
-  console.log("Form submitted!", event.target.elements);
   for (let i = 0; i < event.target.elements.length; i++) {
     const elementId = event.target.elements[i].id;
-    console.log("elementID", elementId);
-    // console.log("elements", event.target.elements[i].value);
     if (
       event.target.elements[i].type === "text" ||
       event.target.elements[i].type === "password"
     ) {
       const elementValue = event.target.elements[i].value.trim();
       if (!elementValue) {
+        if (elementId === "emailAddressInput") {
+          const errorElement = document.getElementById("empty" + elementId);
+          if (errorElement.classList.contains("invalidEmail")) {
+            errorElement.classList.add("hiddenClass");
+            errorElement.classList.remove("invalidEmail");
+          }
+        }
         handleErrorElements(elementId, "emptyVal");
-        // document.getElementById();
       } else if (elementValue && elementId === "emailAddressInput") {
-        console.log("hello");
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         if (!emailRegex.test(elementValue)) {
-          //   removeErrorElement(elementId);
-          //   const errorELementString = "empty" + elementId;
           const errorElement = document.getElementById("empty" + elementId);
           errorElement.classList.add("hiddenClass");
           errorElement.classList.remove("error-message");
           handleErrorElements(elementId, "invalidEmail");
         } else {
+          counter = counter + 1;
           removeErrorElement(elementId);
         }
       } else {
+        counter = counter + 1;
         removeErrorElement(elementId);
       }
     }
   }
-  // document.getElementById('myForm').reset();
+  if (counter === event.target.elements.length - 1) {
+    event.target.reset();
+  }
 }
 
 function handleErrorElements(elementId, errorType) {
-  console.log("event.target.elements[i]", elementId.split("Input")[0]);
   const id = elementId.split("Input")[0];
   if (id) {
-    console.log(id.length);
     const imgElement = document.getElementById(id).querySelector("img");
     let errorElement;
     const errorElementString = "empty" + elementId;
-    console.log("errorElementString", errorElementString);
     if (errorType === "emptyVal") {
-      console.log("hello4");
       errorElement = document.getElementById(errorElementString);
-      // .querySelector(errorElementString);
     } else {
       errorElement = document.getElementById("invalidEmail");
     }
-    console.log("temp", errorElement);
     imgElement.classList.remove("hiddenClass");
     imgElement.classList.add("errorIconClass");
     errorElement.classList.remove("hiddenClass");
@@ -62,18 +61,14 @@ function handleErrorElements(elementId, errorType) {
 }
 
 function removeErrorElement(elementId) {
-  console.log("event.target.elements[i]", elementId.split("Input")[0]);
   const id = elementId.split("Input")[0];
   if (id) {
     const placeholderValue = convertVariableToLabel(id);
-    console.log(id.length);
     const imgElement = document.getElementById(id).querySelector("img");
     const errorELementString = "empty" + elementId;
     const errorElement = document.getElementById(errorELementString);
 
     const invalidEmailElement = document.getElementById("invalidEmail");
-    // document.getElementById(id).getElementById("invalidEmail");
-    console.log("temp", errorElement);
     imgElement.classList.add("hiddenClass");
     imgElement.classList.remove("errorIconClass");
     errorElement.classList.add("hiddenClass");
